@@ -10,13 +10,22 @@
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    private LogicaMesa logicaMesa;
+    private AniadirMesa aniadirMesa;
+    
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        aniadirMesa = new AniadirMesa(this, true);
+        logicaMesa = new LogicaMesa(this);
+        establecerTableModelMesas();
     }
 
+    public void establecerTableModelMesas(){
+        this.jTableMesas.setModel(new MesasTableModel(logicaMesa.getListaMesas()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +43,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,10 +77,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonEliminarMesa.setText("Eliminar Mesa Sin Cobrar");
 
         jButton1.setText("Nueva Mesa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Añadir Consumición");
 
         jButton3.setText("Cobrar / Sacar ticket");
+
+        jMenu2.setText("Añadir items");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Eliminar Items");
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +128,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jButtonFiltrar)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -114,6 +139,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.aniadirMesa.getjTextFieldNumMesa().setText("");
+        this.aniadirMesa.setVisible(true);
+        int numMesa = Integer.parseInt(this.aniadirMesa.obtenerNumeroMesa());
+        System.out.println(Integer.parseInt(this.aniadirMesa.obtenerNumeroMesa()));
+        this.logicaMesa.aniadirMesa(new Mesa(numMesa));
+        establecerTableModelMesas();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +191,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonEliminarMesa;
     private javax.swing.JButton jButtonFiltrar;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMesas;
     private javax.swing.JTextField jTextFieldFiltroMesas;

@@ -20,7 +20,16 @@ public class Mesa {
         this.numMesa = numMesa;
         this.items = new ArrayList<Item>();
     }
+    
 
     //Añadir y eliminar Item
     //Metodo para comprobar que existe un item
+
+    public int getNumMesa() {
+        return numMesa;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
 }
