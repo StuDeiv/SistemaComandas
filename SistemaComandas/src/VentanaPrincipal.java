@@ -184,10 +184,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
         // TODO add your handling code here:
-        MesasTableModel mtm = new MesasTableModel((logicaMesa.getListaMesas()));
-        this.jTableMesas.setModel(mtm);
         //Ordenar el table modle
-        sorter = new TableRowSorter<>(mtm);
         RowFilter<MesasTableModel,Integer> rf = RowFilter.regexFilter(this.jTextFieldFiltroMesas.getText(), 0);
         sorter.setRowFilter(rf);
     }//GEN-LAST:event_jButtonFiltrarActionPerformed
