@@ -19,6 +19,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private LogicaMesa logicaMesa;
     private AniadirMesa aniadirMesa;
+    private VentanaMesa1 ventanaMesa1;
     private TableRowSorter<MesasTableModel> sorter;
 
     /**
@@ -27,6 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         aniadirMesa = new AniadirMesa(this, true);
+        ventanaMesa1 = new VentanaMesa1(this, true);
         logicaMesa = new LogicaMesa(this);
         establecerTableModelMesas();
     }
@@ -67,8 +69,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextFieldFiltroMesas = new javax.swing.JTextField();
         jButtonFiltrar = new javax.swing.JButton();
         jButtonEliminarMesa = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonNuevaMesa = new javax.swing.JButton();
+        jButtonAniadirConsumicion = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -113,14 +115,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Nueva Mesa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNuevaMesa.setText("Nueva Mesa");
+        jButtonNuevaMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonNuevaMesaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Añadir Consumición");
+        jButtonAniadirConsumicion.setText("Añadir Consumición");
+        jButtonAniadirConsumicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAniadirConsumicionActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cobrar / Sacar ticket");
 
@@ -150,9 +157,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jButtonFiltrar)
                         .addGap(44, 44, 44)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonAniadirConsumicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNuevaMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
@@ -167,9 +174,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jTextFieldFiltroMesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonFiltrar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonNuevaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonAniadirConsumicion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEliminarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +187,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonNuevaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevaMesaActionPerformed
         // TODO add your handling code here:
         this.aniadirMesa.getjTextFieldNumMesa().setText("");
         this.aniadirMesa.setVisible(true);
@@ -188,7 +195,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.logicaMesa.aniadirMesa(new Mesa(numMesa));
         establecerTableModelMesas();
         ordenarMesa();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonNuevaMesaActionPerformed
 
     private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
         // TODO add your handling code here:
@@ -204,11 +211,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         MesasTableModel mtm = (MesasTableModel) this.jTableMesas.getModel();
         if (filaSeleccionada >= 0) {
             mtm.removeRow(filaSeleccionada);
-            System.out.println(filaSeleccionada);
             this.logicaMesa.getListaMesas().remove(filaSeleccionada);
             establecerTableModelMesas();
         }
     }//GEN-LAST:event_jButtonEliminarMesaActionPerformed
+
+    private void jButtonAniadirConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAniadirConsumicionActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
+        System.out.println(numMesaSeleccionada);
+        this.ventanaMesa1.getjLabelMesasId().setText("Mesa Nº"+numMesaSeleccionada);
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonAniadirConsumicionActionPerformed
 
 
     /**
@@ -247,11 +262,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAniadirConsumicion;
     private javax.swing.JButton jButtonEliminarMesa;
     private javax.swing.JButton jButtonFiltrar;
+    private javax.swing.JButton jButtonNuevaMesa;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
