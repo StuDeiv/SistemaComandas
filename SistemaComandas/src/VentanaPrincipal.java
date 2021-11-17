@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
@@ -218,13 +219,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonAniadirConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAniadirConsumicionActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
-        System.out.println(numMesaSeleccionada);
-        this.ventanaMesa1.getjLabelMesasId().setText("Mesa Nº"+numMesaSeleccionada);
-        this.ventanaMesa1.setVisible(true);
+        try {
+            this.setVisible(false);
+            int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
+            System.out.println(numMesaSeleccionada);
+            this.ventanaMesa1.getjLabelMesasId().setText("Mesa Nº" + numMesaSeleccionada);
+            this.ventanaMesa1.setVisible(true);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona una mesa", "ERROR", JOptionPane.ERROR_MESSAGE);
+            this.setVisible(true);
+        }
     }//GEN-LAST:event_jButtonAniadirConsumicionActionPerformed
-
 
     /**
      * @param args the command line arguments
