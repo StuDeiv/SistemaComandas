@@ -13,7 +13,8 @@ import javax.swing.JLabel;
  */
 public class VentanaMesa1 extends javax.swing.JDialog {
     
-    VentanaPrincipal ventanaPrincipal;
+    private VentanaPrincipal ventanaPrincipal;
+    private VentanaBebidas ventanaBebidas;
     /**
      * Creates new form VentanaMesa1
      */
@@ -21,6 +22,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         ventanaPrincipal = (VentanaPrincipal) parent;
+        ventanaBebidas = new VentanaBebidas(ventanaPrincipal, true);
     }
 
     public JLabel getjLabelMesasId() {
@@ -155,6 +157,8 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
     private void jButtonBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBebidasActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        this.ventanaBebidas.setVisible(true);
     }//GEN-LAST:event_jButtonBebidasActionPerformed
 
     private void jButtonVolverMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverMesasActionPerformed
