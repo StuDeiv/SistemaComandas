@@ -37,10 +37,15 @@ public class MesasTableModel extends AbstractTableModel {
         }
         return null;
     }
-    
+
     @Override
     public String getColumnName(int i) {
         return "Número de mesa";
+    }
+
+    public void removeRow(int row) {
+        // remove a row from your internal data structure
+        fireTableRowsDeleted(row, row);
     }
 
 }

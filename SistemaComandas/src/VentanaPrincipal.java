@@ -49,6 +49,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
+    public int corregirGetSelectRow() {
+        return this.jTableMesas.convertRowIndexToModel(jTableMesas.getSelectedRow());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,6 +107,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonEliminarMesa.setText("Eliminar Mesa Sin Cobrar");
+        jButtonEliminarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarMesaActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Nueva Mesa");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +185,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.aniadirMesa.getjTextFieldNumMesa().setText("");
         this.aniadirMesa.setVisible(true);
         int numMesa = Integer.parseInt(this.aniadirMesa.obtenerNumeroMesa());
-        System.out.println(Integer.parseInt(this.aniadirMesa.obtenerNumeroMesa()));
         this.logicaMesa.aniadirMesa(new Mesa(numMesa));
         establecerTableModelMesas();
         ordenarMesa();
@@ -185,9 +193,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
         // TODO add your handling code here:
         //Ordenar el table modle
-        RowFilter<MesasTableModel,Integer> rf = RowFilter.regexFilter(this.jTextFieldFiltroMesas.getText(), 0);
+        RowFilter<MesasTableModel, Integer> rf = RowFilter.regexFilter(this.jTextFieldFiltroMesas.getText(), 0);
         sorter.setRowFilter(rf);
+        this.jTextFieldFiltroMesas.setText("");
     }//GEN-LAST:event_jButtonFiltrarActionPerformed
+
+    private void jButtonEliminarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarMesaActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = corregirGetSelectRow();
+        MesasTableModel mtm = (MesasTableModel) this.jTableMesas.getModel();
+        if (filaSeleccionada >= 0) {
+            mtm.removeRow(filaSeleccionada);
+            System.out.println(filaSeleccionada);
+            this.logicaMesa.getListaMesas().remove(filaSeleccionada);
+            establecerTableModelMesas();
+        }
+    }//GEN-LAST:event_jButtonEliminarMesaActionPerformed
+
 
     /**
      * @param args the command line arguments
