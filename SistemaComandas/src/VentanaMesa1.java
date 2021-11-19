@@ -15,6 +15,9 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     
     private VentanaPrincipal ventanaPrincipal;
     private VentanaBebidas ventanaBebidas;
+    private LogicaMesa logicaMesa;
+    private LogicaItems logicaItems;
+    
     /**
      * Creates new form VentanaMesa1
      */
@@ -25,6 +28,14 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         ventanaBebidas = new VentanaBebidas(ventanaPrincipal, true);
     }
 
+    public LogicaMesa getLogicaMesa() {
+        return logicaMesa;
+    }
+
+    public void setLogicaMesa(LogicaMesa logicaMesa) {
+        this.logicaMesa = logicaMesa;
+    }
+    
     public JLabel getjLabelMesasId() {
         return jLabelMesasId;
     }

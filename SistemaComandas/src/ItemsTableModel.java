@@ -7,14 +7,14 @@ import javax.swing.table.AbstractTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author proye
  */
 public class ItemsTableModel extends AbstractTableModel {
-    
+
     private List<Item> listaItems;
+    private final String[] columnas = {"Item","Precio","Cantidad"};
 
     public ItemsTableModel(List<Item> listaItems) {
         this.listaItems = listaItems;
@@ -29,24 +29,23 @@ public class ItemsTableModel extends AbstractTableModel {
     public int getColumnCount() {
         return 3;
     }
-/*FALTA CONFIGURAR
+
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return listaMesas.get(rowIndex).getNumMesa();
+                return listaItems.get(rowIndex).getNombre();
+            case 1:
+                return listaItems.get(rowIndex).getPrecio();
+            case 2:
+                return listaItems.get(rowIndex).getCantidad();
         }
         return null;
     }
-*/
 
     @Override
-    public String getColumnName(int i) {
-        return "Número de mesa";
+    public String getColumnName(int column) {
+        return columnas[column];
     }
 
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

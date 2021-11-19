@@ -12,12 +12,14 @@ public class Item {
     
     private String nombre;
     private String tipo;
+    private int cantidad;
     private String icono;
     private double precio;
 
-    public Item(String nombre, String tipo, String icono, double precio) {
+    public Item(String nombre, String tipo,int cantidad, String icono, double precio) {
         this.nombre = nombre;
         this.tipo = tipo;
+        this.cantidad = cantidad;
         this.icono = icono;
         this.precio = precio;
     }
@@ -38,6 +40,16 @@ public class Item {
         this.tipo = tipo;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
+    
     public String getIcono() {
         return icono;
     }

@@ -22,15 +22,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private AniadirMesa aniadirMesa;
     private VentanaMesa1 ventanaMesa1;
     private TableRowSorter<MesasTableModel> sorter;
+    private int numMesa = 0;
 
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        logicaMesa = new LogicaMesa(this);
         aniadirMesa = new AniadirMesa(this, true);
         ventanaMesa1 = new VentanaMesa1(this, true);
-        logicaMesa = new LogicaMesa(this);
         establecerTableModelMesas();
     }
 
@@ -39,12 +40,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void ordenarMesa() {
-        MesasTableModel mtm = new MesasTableModel((logicaMesa.getListaMesas()));
-        this.jTableMesas.setModel(mtm);
-        //Ordenar el table modle
-        sorter = new TableRowSorter<>(mtm);
-        //Añado sorter al jTable
-        this.jTableMesas.setRowSorter(sorter);
 
         List<SortKey> sortKeys = new ArrayList<>();
         sortKeys.add(new SortKey(0, SortOrder.ASCENDING));
@@ -190,16 +185,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonNuevaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevaMesaActionPerformed
         // TODO add your handling code here:
-        this.aniadirMesa.getjTextFieldNumMesa().setText("");
-        this.aniadirMesa.setVisible(true);
-        int numMesa = Integer.parseInt(this.aniadirMesa.obtenerNumeroMesa());
-        this.logicaMesa.aniadirMesa(new Mesa(numMesa));
+        //this.aniadirMesa.getjTextFieldNumMesa().setText("");
+        //this.aniadirMesa.setVisible(true);
+        //int numMesa = Integer.parseInt(this.aniadirMesa.obtenerNumeroMesa());
+        this.logicaMesa.aniadirMesa(new Mesa(numMesa + 1));
+        numMesa++;
         establecerTableModelMesas();
-        ordenarMesa();
     }//GEN-LAST:event_jButtonNuevaMesaActionPerformed
 
     private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
-        // TODO add your handling code here:
+        MesasTableModel mtm = new MesasTableModel((logicaMesa.getListaMesas()));
+        this.jTableMesas.setModel(mtm);
+        //Ordenar el table modle
+        sorter = new TableRowSorter<>(mtm);
+        //Añado sorter al jTable
+        this.jTableMesas.setRowSorter(sorter);
         //Ordenar el table modle
         RowFilter<MesasTableModel, Integer> rf = RowFilter.regexFilter(this.jTextFieldFiltroMesas.getText(), 0);
         sorter.setRowFilter(rf);
@@ -217,13 +217,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonEliminarMesaActionPerformed
 
+    public Mesa buscarMesa(int numMesa) {
+        List<Mesa> listaMesasTabla = this.logicaMesa.getListaMesas();
+
+        for (Mesa mesa : listaMesasTabla) {
+            if (mesa.getNumMesa() == numMesa) {
+                return mesa;
+            }
+        }
+        return null;
+    }
+
     private void jButtonAniadirConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAniadirConsumicionActionPerformed
         // TODO add your handling code here:
         try {
-            this.setVisible(false);
             int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
-            System.out.println(numMesaSeleccionada);
-            this.ventanaMesa1.getjLabelMesasId().setText("Mesa Nº" + numMesaSeleccionada);
+            Mesa mesa = buscarMesa(numMesaSeleccionada);
+            this.setVisible(false);
+            this.ventanaMesa1.setLogicaMesa(logicaMesa);
+            this.ventanaMesa1.getjLabelMesasId().setText("Mesa Nº" + mesa.getNumMesa());
             this.ventanaMesa1.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Por favor selecciona una mesa", "ERROR", JOptionPane.ERROR_MESSAGE);
