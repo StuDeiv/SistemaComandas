@@ -10,12 +10,40 @@
  */
 public class VentanaBebidas extends javax.swing.JDialog {
 
+    private VentanaPrincipal ventanaPrincipal;
+    private VentanaMesa1 ventanaMesa1;
+    private int cantidadCocaCola = 0;
+
     /**
      * Creates new form VentanaBebidas
      */
     public VentanaBebidas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public VentanaPrincipal getVentanaPrincipal() {
+        return ventanaPrincipal;
+    }
+
+    public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+    }
+
+    public VentanaMesa1 getVentanaMesa1() {
+        return ventanaMesa1;
+    }
+
+    public void setVentanaMesa1(VentanaMesa1 ventanaMesa1) {
+        this.ventanaMesa1 = ventanaMesa1;
+    }
+
+    public void generarActionListeners() {
+        this.jButtonFanta.addActionListener(new MiActionListener());
+    }
+
+    public void establecerActionComands() {
+
     }
 
     /**
@@ -36,6 +64,11 @@ public class VentanaBebidas extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonCocaCola.setText("Cocacola");
+        jButtonCocaCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCocaColaActionPerformed(evt);
+            }
+        });
 
         jButtonFanta.setText("Fanta");
 
@@ -66,6 +99,11 @@ public class VentanaBebidas extends javax.swing.JDialog {
         );
 
         jButtonCancelarBebida.setText("Cancelar");
+        jButtonCancelarBebida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarBebidaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,6 +128,22 @@ public class VentanaBebidas extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCancelarBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarBebidaActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonCancelarBebidaActionPerformed
+
+    private void jButtonCocaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCocaColaActionPerformed
+        // TODO add your handling code here:
+        cantidadCocaCola++; 
+        Item itemCocaCola = new Item("Cocacola", "Bebida", cantidadCocaCola, "icono.jpeg", 1);
+        this.ventanaMesa1.getLogicaItems().aniadirItem(itemCocaCola);
+        this.ventanaMesa1.establecerTableModelItem();
+    }//GEN-LAST:event_jButtonCocaColaActionPerformed
+
+    
 
     /**
      * @param args the command line arguments

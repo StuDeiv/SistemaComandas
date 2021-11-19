@@ -6,18 +6,21 @@ import javax.swing.JLabel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author proye
  */
 public class VentanaMesa1 extends javax.swing.JDialog {
-    
+
     private VentanaPrincipal ventanaPrincipal;
     private VentanaBebidas ventanaBebidas;
+    private VentanaEntrantes ventanaEntrantes;
+    private VentanaPrimeros ventanaPrimeros;
+    private VentanaSegundos ventanasSegundos;
+    private VentanaPostres ventanaPostres;
     private LogicaMesa logicaMesa;
     private LogicaItems logicaItems;
-    
+
     /**
      * Creates new form VentanaMesa1
      */
@@ -25,7 +28,21 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         ventanaPrincipal = (VentanaPrincipal) parent;
+        logicaItems = new LogicaItems(ventanaPrincipal);
+        establecerTableModelItem();
         ventanaBebidas = new VentanaBebidas(ventanaPrincipal, true);
+        ventanaEntrantes = new VentanaEntrantes(ventanaPrincipal, true);
+        ventanaPrimeros = new VentanaPrimeros(ventanaPrincipal, true);
+        ventanasSegundos = new VentanaSegundos(ventanaPrincipal, true);
+        ventanaPostres = new VentanaPostres(ventanaPrincipal, true);
+    }
+
+    public LogicaItems getLogicaItems() {
+        return logicaItems;
+    }
+
+    public void setLogicaItems(LogicaItems logicaItems) {
+        this.logicaItems = logicaItems;
     }
 
     public LogicaMesa getLogicaMesa() {
@@ -35,12 +52,15 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     public void setLogicaMesa(LogicaMesa logicaMesa) {
         this.logicaMesa = logicaMesa;
     }
-    
+
     public JLabel getjLabelMesasId() {
         return jLabelMesasId;
     }
 
-    
+    public void establecerTableModelItem() {
+        this.jTableItems.setModel(new ItemsTableModel(logicaItems.getListaItems()));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,6 +107,11 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTableItems);
 
         jButtonEntrantes.setText("Entrantes");
+        jButtonEntrantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntrantesActionPerformed(evt);
+            }
+        });
 
         jButtonBebidas.setText("Bebidas");
         jButtonBebidas.addActionListener(new java.awt.event.ActionListener() {
@@ -96,10 +121,25 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         });
 
         jButtonPrimeros.setText("Primeros");
+        jButtonPrimeros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrimerosActionPerformed(evt);
+            }
+        });
 
         jButtonSegundos.setText("Segundos");
+        jButtonSegundos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSegundosActionPerformed(evt);
+            }
+        });
 
         jButtonPostres.setText("Postres");
+        jButtonPostres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPostresActionPerformed(evt);
+            }
+        });
 
         jButtonEliminarItem.setText("Eliminar Item");
 
@@ -168,6 +208,8 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
     private void jButtonBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBebidasActionPerformed
         // TODO add your handling code here:
+        this.ventanaBebidas.setVentanaPrincipal(ventanaPrincipal);
+        this.ventanaBebidas.setVentanaMesa1(this);
         this.setVisible(false);
         this.ventanaBebidas.setVisible(true);
     }//GEN-LAST:event_jButtonBebidasActionPerformed
@@ -177,6 +219,30 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         this.setVisible(false);
         this.ventanaPrincipal.setVisible(true);
     }//GEN-LAST:event_jButtonVolverMesasActionPerformed
+
+    private void jButtonEntrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrantesActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.ventanaEntrantes.setVisible(true);
+    }//GEN-LAST:event_jButtonEntrantesActionPerformed
+
+    private void jButtonPrimerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrimerosActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.ventanaPrimeros.setVisible(true);
+    }//GEN-LAST:event_jButtonPrimerosActionPerformed
+
+    private void jButtonSegundosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSegundosActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.ventanasSegundos.setVisible(true);
+    }//GEN-LAST:event_jButtonSegundosActionPerformed
+
+    private void jButtonPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPostresActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.ventanaPostres.setVisible(true);
+    }//GEN-LAST:event_jButtonPostresActionPerformed
 
     /**
      * @param args the command line arguments
