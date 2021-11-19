@@ -233,6 +233,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         try {
             int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
             Mesa mesa = buscarMesa(numMesaSeleccionada);
+            this.ventanaMesa1.setMesa(mesa);
             this.setVisible(false);
             this.ventanaMesa1.setLogicaMesa(logicaMesa);
             this.ventanaMesa1.getjLabelMesasId().setText("Mesa Nº" + mesa.getNumMesa());

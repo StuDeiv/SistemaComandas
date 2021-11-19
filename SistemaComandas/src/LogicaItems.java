@@ -38,8 +38,8 @@ public class LogicaItems {
                 item.setPrecio(item.getPrecio()*item.getCantidad());
             }
         }
-        this.listaItems.add(itemAniadir);
     }
+    
 
     public List<Item> getListaItems() {
         return listaItems;

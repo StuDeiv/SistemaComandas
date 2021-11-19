@@ -47,6 +47,13 @@ public class LogicaMesa {
         return false;
     }
     
+        public void aniadirItemMesa(Mesa mesa,Item item) {
+        for (Mesa listaMesa : listaMesas) {
+            if (listaMesa.getNumMesa() == mesa.getNumMesa()) {
+                listaMesa.getItems().add(item);
+            }
+        }
+    }
     
 
 }

@@ -14,11 +14,10 @@ import java.util.List;
 public class Mesa {
 
     private int numMesa;
-    private List<Item> items;
+    private List<Item> items = new ArrayList<Item>();
 
     public Mesa(int numMesa) {
         this.numMesa = numMesa;
-        this.items = new ArrayList<Item>();
     }
     
 

@@ -22,6 +22,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     private LogicaMesa logicaMesa;
     private LogicaItems logicaItems;
     private ItemsTableModel itm;
+    private Mesa mesa;
 
     /**
      * Creates new form VentanaMesa1
@@ -40,6 +41,14 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         ventanaPostres = new VentanaPostres(ventanaPrincipal, true);
     }
 
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+    
     public JTable getjTableItems() {
         return jTableItems;
     }
