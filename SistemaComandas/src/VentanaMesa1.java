@@ -1,5 +1,6 @@
 
 import javax.swing.JLabel;
+import javax.swing.JTable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +21,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     private VentanaPostres ventanaPostres;
     private LogicaMesa logicaMesa;
     private LogicaItems logicaItems;
+    private ItemsTableModel itm;
 
     /**
      * Creates new form VentanaMesa1
@@ -29,6 +31,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         initComponents();
         ventanaPrincipal = (VentanaPrincipal) parent;
         logicaItems = new LogicaItems(ventanaPrincipal);
+        itm = new ItemsTableModel(logicaItems.getListaItems());
         establecerTableModelItem();
         ventanaBebidas = new VentanaBebidas(ventanaPrincipal, true);
         ventanaEntrantes = new VentanaEntrantes(ventanaPrincipal, true);
@@ -37,6 +40,14 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         ventanaPostres = new VentanaPostres(ventanaPrincipal, true);
     }
 
+    public JTable getjTableItems() {
+        return jTableItems;
+    }
+
+    public void setjTableItems(JTable jTableItems) {
+        this.jTableItems = jTableItems;
+    }
+    
     public LogicaItems getLogicaItems() {
         return logicaItems;
     }
@@ -58,7 +69,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     }
 
     public void establecerTableModelItem() {
-        this.jTableItems.setModel(new ItemsTableModel(logicaItems.getListaItems()));
+        this.jTableItems.setModel(itm);
     }
 
     /**

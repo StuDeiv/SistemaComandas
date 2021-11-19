@@ -137,15 +137,22 @@ public class VentanaBebidas extends javax.swing.JDialog {
 
     private void jButtonCocaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCocaColaActionPerformed
         // TODO add your handling code here:
-        cantidadCocaCola++; 
+        cantidadCocaCola++;
         Item itemCocaCola = new Item("Cocacola", "Bebida", cantidadCocaCola, "icono.jpeg", 1);
-        this.ventanaMesa1.getLogicaItems().aniadirItem(itemCocaCola);
+        ItemsTableModel itm = (ItemsTableModel) this.ventanaMesa1.getjTableItems().getModel();
+        if (cantidadCocaCola > 1) {
+            itm.update(itemCocaCola);
+            this.ventanaMesa1.getLogicaItems().aniadirItem(itemCocaCola);
+        } else {
+            itm.add(itemCocaCola);
+        }
         this.ventanaMesa1.establecerTableModelItem();
+        this.ventanaMesa1.getjTableItems().setModel(itm);
         this.setVisible(false);
+        this.ventanaMesa1.setVisible(true);
     }//GEN-LAST:event_jButtonCocaColaActionPerformed
 
     
-
     /**
      * @param args the command line arguments
      */

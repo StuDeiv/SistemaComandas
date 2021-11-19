@@ -35,6 +35,7 @@ public class LogicaItems {
         for (Item item : listaItems) {
             if (item.getNombre().contains(itemAniadir.getNombre())) {
                 item.setCantidad(item.getCantidad()+1);
+                item.setPrecio(item.getPrecio()*item.getCantidad());
             }
         }
         this.listaItems.add(itemAniadir);

@@ -20,6 +20,15 @@ public class ItemsTableModel extends AbstractTableModel {
         this.listaItems = listaItems;
     }
 
+    public List<Item> getListaItems() {
+        return listaItems;
+    }
+
+    public void setListaItems(List<Item> listaItems) {
+        this.listaItems = listaItems;
+    }
+    
+
     @Override
     public int getRowCount() {
         return listaItems.size();
@@ -46,6 +55,26 @@ public class ItemsTableModel extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         return columnas[column];
+    }
+    
+    public void add(Item item) {
+        listaItems.add(item);
+        fireTableRowsInserted(listaItems.size() - 1, listaItems.size() - 1);
+    }
+
+    public void remove(Item item) {
+        int row = listaItems.indexOf(item);
+        if (row >= 0) {
+            listaItems.remove(item);
+            fireTableRowsDeleted(row, row);
+        }
+    }
+
+    public void update(Item item) {
+        int row = listaItems.indexOf(item);
+        if (row >= 0) {
+            fireTableRowsUpdated(row, row);
+        }
     }
 
 }
