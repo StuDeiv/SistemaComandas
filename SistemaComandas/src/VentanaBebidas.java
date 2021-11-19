@@ -141,6 +141,7 @@ public class VentanaBebidas extends javax.swing.JDialog {
         Item itemCocaCola = new Item("Cocacola", "Bebida", cantidadCocaCola, "icono.jpeg", 1);
         this.ventanaMesa1.getLogicaItems().aniadirItem(itemCocaCola);
         this.ventanaMesa1.establecerTableModelItem();
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonCocaColaActionPerformed
 
     
