@@ -14,13 +14,19 @@ import java.util.List;
 public class Mesa {
 
     private int numMesa;
-    private List<Item> items = new ArrayList<Item>();
+    private List<Item> items;
 
-    public Mesa(int numMesa) {
+    public Mesa() {
         this.numMesa = numMesa;
+        this.items = new ArrayList<Item>();
     }
     
-
+      public Mesa(int numMesa) {
+        this.numMesa = numMesa;
+        this.items = new ArrayList<Item>();
+    }
+       
+    
     //Añadir y eliminar Item
     //Metodo para comprobar que existe un item
 
@@ -28,6 +34,14 @@ public class Mesa {
         return numMesa;
     }
 
+    public void setNumMesa(int numMesa) {
+        this.numMesa = numMesa;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+    
     public List<Item> getItems() {
         return items;
     }

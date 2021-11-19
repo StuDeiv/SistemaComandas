@@ -149,6 +149,8 @@ public class VentanaBebidas extends javax.swing.JDialog {
         } else {
             itm.add(itemCocaCola);
         }
+        this.ventanaMesa1.getMesa().setItems(this.ventanaMesa1.getLogicaItems().getListaItems());
+        itm = new ItemsTableModel(this.ventanaMesa1.getMesa().getItems());
         this.ventanaMesa1.establecerTableModelItem();
         this.ventanaMesa1.getjTableItems().setModel(itm);
         this.setVisible(false);

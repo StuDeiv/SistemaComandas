@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
@@ -23,7 +25,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     private LogicaItems logicaItems;
     private ItemsTableModel itm;
     private Mesa mesa;
-
+    //private List<Item> lItems = new ArrayList<>();
     /**
      * Creates new form VentanaMesa1
      */
@@ -32,6 +34,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         initComponents();
         ventanaPrincipal = (VentanaPrincipal) parent;
         logicaItems = new LogicaItems(ventanaPrincipal);
+        //mesa.setItems(lItems);
         itm = new ItemsTableModel(logicaItems.getListaItems());
         establecerTableModelItem();
         ventanaBebidas = new VentanaBebidas(ventanaPrincipal, true);
@@ -77,6 +80,14 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         return jLabelMesasId;
     }
 
+    public ItemsTableModel getItm() {
+        return itm;
+    }
+
+    public void setItm(ItemsTableModel itm) {
+        this.itm = itm;
+    }
+    
     public void establecerTableModelItem() {
         this.jTableItems.setModel(itm);
     }
@@ -100,6 +111,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         jButtonPostres = new javax.swing.JButton();
         jButtonEliminarItem = new javax.swing.JButton();
         jButtonVolverMesas = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -170,6 +182,13 @@ public class VentanaMesa1 extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,7 +212,9 @@ public class VentanaMesa1 extends javax.swing.JDialog {
                     .addComponent(jButtonBebidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
+                .addGap(31, 31, 31)
+                .addComponent(jButton1)
+                .addGap(34, 34, 34)
                 .addComponent(jButtonVolverMesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -219,7 +240,9 @@ public class VentanaMesa1 extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonPostres, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonVolverMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonVolverMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -236,7 +259,10 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
     private void jButtonVolverMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverMesasActionPerformed
         // TODO add your handling code here:
+        this.setLogicaItems(new LogicaItems(ventanaPrincipal));
+        this.jTableItems.setModel(new ItemsTableModel(mesa.getItems()));
         this.setVisible(false);
+        this.dispose();
         this.ventanaPrincipal.setVisible(true);
     }//GEN-LAST:event_jButtonVolverMesasActionPerformed
 
@@ -263,6 +289,15 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         this.setVisible(false);
         this.ventanaPostres.setVisible(true);
     }//GEN-LAST:event_jButtonPostresActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Mesa seleccionada: " +mesa.getNumMesa());
+        List<Item> lItems = this.mesa.getItems();
+        for (Item item : lItems) {
+            System.out.println(item);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,6 +342,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBebidas;
     private javax.swing.JButton jButtonEliminarItem;
     private javax.swing.JButton jButtonEntrantes;
