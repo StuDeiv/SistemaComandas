@@ -10,12 +10,32 @@
  */
 public class VentanaSegundos extends javax.swing.JDialog {
 
+    private VentanaPrincipal ventanaPrincipal;
+    private VentanaMesa1 ventanaMesa1;
+    private Item item;
+
     /**
      * Creates new form VentanaSegundos
      */
     public VentanaSegundos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public VentanaPrincipal getVentanaPrincipal() {
+        return ventanaPrincipal;
+    }
+
+    public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+    }
+
+    public VentanaMesa1 getVentanaMesa1() {
+        return ventanaMesa1;
+    }
+
+    public void setVentanaMesa1(VentanaMesa1 ventanaMesa1) {
+        this.ventanaMesa1 = ventanaMesa1;
     }
 
     /**
@@ -38,10 +58,25 @@ public class VentanaSegundos extends javax.swing.JDialog {
         jButtonCancelar.setText("Cancelar");
 
         jButtonSolomillo.setText("Solomillo");
+        jButtonSolomillo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSolomilloActionPerformed(evt);
+            }
+        });
 
         jButtonBistec.setText("Bistec");
+        jButtonBistec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBistecActionPerformed(evt);
+            }
+        });
 
         jButtonPechuga.setText("<html>Pechuga <br> de pollo\n</html>");
+        jButtonPechuga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPechugaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,6 +125,42 @@ public class VentanaSegundos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSolomilloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSolomilloActionPerformed
+        item = new Item("Solomillo", "Segundos", this.ventanaMesa1.getMesa().cantidadItem("Solomillo") + 1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonSolomilloActionPerformed
+
+    private void jButtonBistecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBistecActionPerformed
+        item = new Item("Bistec", "Segundos", this.ventanaMesa1.getMesa().cantidadItem("Bistec") + 1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonBistecActionPerformed
+
+    private void jButtonPechugaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPechugaActionPerformed
+        item = new Item("Pechuga de pollo", "Segundos", this.ventanaMesa1.getMesa().cantidadItem("Pechuga de pollo") + 1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonPechugaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -54,7 +54,7 @@
                   <EmptySpace pref="65" max="32767" attributes="0"/>
                   <Component id="jButtonFanta" min="-2" pref="86" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                  <Component id="jButtonCania" min="-2" pref="87" max="-2" attributes="0"/>
+                  <Component id="jButtonAgua" min="-2" pref="87" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -66,7 +66,7 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jButtonCocaCola" alignment="0" pref="67" max="32767" attributes="0"/>
                       <Component id="jButtonFanta" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButtonCania" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonAgua" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="145" max="32767" attributes="0"/>
               </Group>
@@ -86,11 +86,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Fanta"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFantaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCania">
+        <Component class="javax.swing.JButton" name="jButtonAgua">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ca&#xf1;a"/>
+            <Property name="text" type="java.lang.String" value="Agua"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAguaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

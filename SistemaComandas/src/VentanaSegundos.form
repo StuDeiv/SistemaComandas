@@ -87,16 +87,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Solomillo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSolomilloActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonBistec">
           <Properties>
             <Property name="text" type="java.lang.String" value="Bistec"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBistecActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPechuga">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;Pechuga &lt;br&gt; de pollo&#xa;&lt;/html&gt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPechugaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

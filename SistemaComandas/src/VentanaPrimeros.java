@@ -10,6 +10,9 @@
  */
 public class VentanaPrimeros extends javax.swing.JDialog {
 
+    private VentanaPrincipal ventanaPrincipal;
+    private VentanaMesa1 ventanaMesa1;
+    private Item item;
     /**
      * Creates new form VentanaPrimeros
      */
@@ -18,6 +21,22 @@ public class VentanaPrimeros extends javax.swing.JDialog {
         initComponents();
     }
 
+        public VentanaPrincipal getVentanaPrincipal() {
+        return ventanaPrincipal;
+    }
+
+    public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+    }
+
+    public VentanaMesa1 getVentanaMesa1() {
+        return ventanaMesa1;
+    }
+
+    public void setVentanaMesa1(VentanaMesa1 ventanaMesa1) {
+        this.ventanaMesa1 = ventanaMesa1;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,25 +50,40 @@ public class VentanaPrimeros extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jButtonPaella = new javax.swing.JButton();
         jButtonEspaguettis = new javax.swing.JButton();
-        jButtonMacarrones = new javax.swing.JButton();
+        jButtonSopa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonCancelarBebida.setText("Cancelar");
 
         jButtonPaella.setText("Paella");
+        jButtonPaella.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPaellaActionPerformed(evt);
+            }
+        });
 
         jButtonEspaguettis.setText("Espaguettis");
+        jButtonEspaguettis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEspaguettisActionPerformed(evt);
+            }
+        });
 
-        jButtonMacarrones.setText("Espaguettis");
+        jButtonSopa.setText("Sopa");
+        jButtonSopa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSopaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
-                .addComponent(jButtonMacarrones)
+                .addContainerGap(150, Short.MAX_VALUE)
+                .addComponent(jButtonSopa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jButtonPaella, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -65,8 +99,8 @@ public class VentanaPrimeros extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonPaella, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonMacarrones, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                    .addComponent(jButtonSopa, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(152, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -99,6 +133,42 @@ public class VentanaPrimeros extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonEspaguettisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEspaguettisActionPerformed
+        item = new Item("Espaguettis", "Primeros", this.ventanaMesa1.getMesa().cantidadItem("Espaguettis")+1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonEspaguettisActionPerformed
+
+    private void jButtonSopaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSopaActionPerformed
+                item = new Item("Sopa", "Primeros", this.ventanaMesa1.getMesa().cantidadItem("Sopa")+1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonSopaActionPerformed
+
+    private void jButtonPaellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPaellaActionPerformed
+                item = new Item("Paella", "Primeros", this.ventanaMesa1.getMesa().cantidadItem("Paella")+1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonPaellaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,8 +215,8 @@ public class VentanaPrimeros extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelarBebida;
     private javax.swing.JButton jButtonEspaguettis;
-    private javax.swing.JButton jButtonMacarrones;
     private javax.swing.JButton jButtonPaella;
+    private javax.swing.JButton jButtonSopa;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

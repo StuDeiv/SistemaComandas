@@ -72,9 +72,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonEnsalada" min="-2" pref="66" max="-2" attributes="0"/>
-                      <Component id="jButtonPure" max="32767" attributes="0"/>
+                      <Component id="jButtonPure" pref="67" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="103" max="32767" attributes="0"/>
+                  <EmptySpace pref="104" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -91,16 +91,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ensalada"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEnsaladaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSopa">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sopa"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSopaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPure">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pur&#xe9;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPureActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

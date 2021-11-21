@@ -10,12 +10,32 @@
  */
 public class VentanaPostres extends javax.swing.JDialog {
 
+    private VentanaPrincipal ventanaPrincipal;
+    private VentanaMesa1 ventanaMesa1;
+    private Item item;
+
     /**
      * Creates new form VentanaPostres
      */
     public VentanaPostres(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public VentanaPrincipal getVentanaPrincipal() {
+        return ventanaPrincipal;
+    }
+
+    public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+    }
+
+    public VentanaMesa1 getVentanaMesa1() {
+        return ventanaMesa1;
+    }
+
+    public void setVentanaMesa1(VentanaMesa1 ventanaMesa1) {
+        this.ventanaMesa1 = ventanaMesa1;
     }
 
     /**
@@ -38,10 +58,25 @@ public class VentanaPostres extends javax.swing.JDialog {
         jButtonCancelar.setText("Cancelar");
 
         jButtonArrozLeche.setText("<html>Arroz <br> con leche </html>");
+        jButtonArrozLeche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonArrozLecheActionPerformed(evt);
+            }
+        });
 
         jButtonNatillas.setText("Natillas");
+        jButtonNatillas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNatillasActionPerformed(evt);
+            }
+        });
 
         jButtonFruta.setText("Fruta");
+        jButtonFruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFrutaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,6 +125,42 @@ public class VentanaPostres extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonArrozLecheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArrozLecheActionPerformed
+        item = new Item("Arroz con leche", "Postres", this.ventanaMesa1.getMesa().cantidadItem("Arroz con leche") + 1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonArrozLecheActionPerformed
+
+    private void jButtonNatillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNatillasActionPerformed
+        item = new Item("Natillas", "Postres", this.ventanaMesa1.getMesa().cantidadItem("Natillas") + 1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonNatillasActionPerformed
+
+    private void jButtonFrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFrutaActionPerformed
+        item = new Item("Fruta", "Postres", this.ventanaMesa1.getMesa().cantidadItem("Fruta") + 1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonFrutaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -60,8 +60,8 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="131" max="32767" attributes="0"/>
-                  <Component id="jButtonMacarrones" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                  <Component id="jButtonSopa" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jButtonPaella" min="-2" pref="91" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -81,9 +81,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonPaella" alignment="3" min="-2" pref="68" max="-2" attributes="0"/>
-                      <Component id="jButtonMacarrones" alignment="3" min="-2" pref="68" max="-2" attributes="0"/>
+                      <Component id="jButtonSopa" alignment="3" min="-2" pref="68" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                  <EmptySpace pref="152" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -100,16 +100,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Paella"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPaellaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonEspaguettis">
           <Properties>
             <Property name="text" type="java.lang.String" value="Espaguettis"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEspaguettisActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonMacarrones">
+        <Component class="javax.swing.JButton" name="jButtonSopa">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Espaguettis"/>
+            <Property name="text" type="java.lang.String" value="Sopa"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSopaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -14,7 +14,6 @@ public class VentanaBebidas extends javax.swing.JDialog {
 
     private VentanaPrincipal ventanaPrincipal;
     private VentanaMesa1 ventanaMesa1;
-    private int cantidadCocaCola = 0;
     private Item item;
 
     /**
@@ -24,16 +23,6 @@ public class VentanaBebidas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-
-    public int getCantidadCocaCola() {
-        return cantidadCocaCola;
-    }
-
-    public void setCantidadCocaCola(int cantidadCocaCola) {
-        this.cantidadCocaCola = cantidadCocaCola;
-    }
-    
-    
 
     public VentanaPrincipal getVentanaPrincipal() {
         return ventanaPrincipal;
@@ -55,7 +44,6 @@ public class VentanaBebidas extends javax.swing.JDialog {
         this.jButtonFanta.addActionListener(new MiActionListener());
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,7 +56,7 @@ public class VentanaBebidas extends javax.swing.JDialog {
         jPanelBebidas = new javax.swing.JPanel();
         jButtonCocaCola = new javax.swing.JButton();
         jButtonFanta = new javax.swing.JButton();
-        jButtonCania = new javax.swing.JButton();
+        jButtonAgua = new javax.swing.JButton();
         jButtonCancelarBebida = new javax.swing.JButton();
 
         jButtonCocaCola.setText("Cocacola");
@@ -79,8 +67,18 @@ public class VentanaBebidas extends javax.swing.JDialog {
         });
 
         jButtonFanta.setText("Fanta");
+        jButtonFanta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFantaActionPerformed(evt);
+            }
+        });
 
-        jButtonCania.setText("Caña");
+        jButtonAgua.setText("Agua");
+        jButtonAgua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAguaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBebidasLayout = new javax.swing.GroupLayout(jPanelBebidas);
         jPanelBebidas.setLayout(jPanelBebidasLayout);
@@ -92,7 +90,7 @@ public class VentanaBebidas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jButtonFanta, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(jButtonCania, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelBebidasLayout.setVerticalGroup(
@@ -102,7 +100,7 @@ public class VentanaBebidas extends javax.swing.JDialog {
                 .addGroup(jPanelBebidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButtonCocaCola, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                     .addComponent(jButtonFanta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCania, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonAgua, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
@@ -145,7 +143,7 @@ public class VentanaBebidas extends javax.swing.JDialog {
 
     private void jButtonCocaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCocaColaActionPerformed
         // TODO add your handling code here:
-        item = new Item("Cocacola", "Bebida", this.ventanaMesa1.getMesa().cantidadItem("Cocacola")+1, "icono.jpeg", 1);
+        item = new Item("Cocacola", "Bebida", this.ventanaMesa1.getMesa().cantidadItem("Cocacola") + 1, "icono.jpeg", 1);
         if (item.getCantidad() > 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
@@ -155,6 +153,29 @@ public class VentanaBebidas extends javax.swing.JDialog {
         this.dispose();
         this.ventanaMesa1.setVisible(true);
     }//GEN-LAST:event_jButtonCocaColaActionPerformed
+
+    private void jButtonFantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFantaActionPerformed
+        item = new Item("Fanta", "Bebida", this.ventanaMesa1.getMesa().cantidadItem("Fanta") + 1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);
+    }//GEN-LAST:event_jButtonFantaActionPerformed
+
+    private void jButtonAguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAguaActionPerformed
+        item = new Item("Agua", "Bebida", this.ventanaMesa1.getMesa().cantidadItem("Agua") + 1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
+        } else {
+            this.ventanaMesa1.getMesa().getItems().add(item);
+        }
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
+        this.ventanaMesa1.setVisible(true);        this.ventanaMesa1.setVisible(true);    }//GEN-LAST:event_jButtonAguaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,8 +220,8 @@ public class VentanaBebidas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgua;
     private javax.swing.JButton jButtonCancelarBebida;
-    private javax.swing.JButton jButtonCania;
     private javax.swing.JButton jButtonCocaCola;
     private javax.swing.JButton jButtonFanta;
     private javax.swing.JPanel jPanelBebidas;

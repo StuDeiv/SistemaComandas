@@ -264,7 +264,6 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
     private void jButtonVolverMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverMesasActionPerformed
         // TODO add your handling code here
-        this.ventanaBebidas.setCantidadCocaCola(0);
         this.ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverMesasActionPerformed
@@ -276,25 +275,29 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
     private void jButtonEntrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrantesActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
+        this.ventanaEntrantes.setVentanaMesa1(this);
         this.ventanaEntrantes.setVisible(true);
     }//GEN-LAST:event_jButtonEntrantesActionPerformed
 
     private void jButtonPrimerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrimerosActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
+        this.ventanaPrimeros.setVentanaMesa1(this);
         this.ventanaPrimeros.setVisible(true);
     }//GEN-LAST:event_jButtonPrimerosActionPerformed
 
     private void jButtonSegundosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSegundosActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
+        this.ventanasSegundos.setVentanaMesa1(this);
         this.ventanasSegundos.setVisible(true);
     }//GEN-LAST:event_jButtonSegundosActionPerformed
 
     private void jButtonPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPostresActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
+        this.ventanaPostres.setVentanaMesa1(this);
         this.ventanaPostres.setVisible(true);
     }//GEN-LAST:event_jButtonPostresActionPerformed
 
