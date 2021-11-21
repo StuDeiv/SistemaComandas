@@ -19,10 +19,10 @@ import javax.swing.table.TableRowSorter;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private LogicaMesa logicaMesa;
-    private AniadirMesa aniadirMesa;
     private VentanaMesa1 ventanaMesa1;
     private TableRowSorter<MesasTableModel> sorter;
     private int numMesa = 0;
+    private Mesa mesa;
 
     /**
      * Creates new form VentanaPrincipal
@@ -30,11 +30,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         logicaMesa = new LogicaMesa(this);
-        aniadirMesa = new AniadirMesa(this, true);
         ventanaMesa1 = new VentanaMesa1(this, true);
         establecerTableModelMesas();
     }
 
+    public LogicaMesa getLogicaMesa() {
+        return logicaMesa;
+    }
+
+    public void setLogicaMesa(LogicaMesa logicaMesa) {
+        this.logicaMesa = logicaMesa;
+    }
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+
+    
+    
     public void establecerTableModelMesas() {
         this.jTableMesas.setModel(new MesasTableModel(logicaMesa.getListaMesas()));
     }
@@ -126,6 +143,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jButton3.setText("Cobrar / Sacar ticket");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jMenu2.setText("Añadir items");
         jMenuBar1.add(jMenu2);
@@ -184,10 +206,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNuevaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevaMesaActionPerformed
-        // TODO add your handling code here:
-        //this.aniadirMesa.getjTextFieldNumMesa().setText("");
-        //this.aniadirMesa.setVisible(true);
-        //int numMesa = Integer.parseInt(this.aniadirMesa.obtenerNumeroMesa());
         this.logicaMesa.aniadirMesa(new Mesa(numMesa + 1));
         numMesa++;
         establecerTableModelMesas();
@@ -233,11 +251,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
-            Mesa mesa = buscarMesa(numMesaSeleccionada);
+            mesa = buscarMesa(numMesaSeleccionada);
             this.ventanaMesa1.setMesa(mesa);
-            this.ventanaMesa1.getMesa().setNumMesa(numMesaSeleccionada);
             this.setVisible(false);
-            this.ventanaMesa1.setLogicaMesa(logicaMesa);
             this.ventanaMesa1.getjLabelMesasId().setText("Mesa Nº" + mesa.getNumMesa());
             this.ventanaMesa1.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -245,6 +261,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             this.setVisible(true);
         }
     }//GEN-LAST:event_jButtonAniadirConsumicionActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
+        Mesa mesa = buscarMesa(numMesaSeleccionada);
+        for (Item item : mesa.getItems()) {
+            System.out.println(item);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

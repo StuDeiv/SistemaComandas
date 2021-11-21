@@ -6,7 +6,6 @@ import java.util.List;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author proye
@@ -16,6 +15,7 @@ public class VentanaBebidas extends javax.swing.JDialog {
     private VentanaPrincipal ventanaPrincipal;
     private VentanaMesa1 ventanaMesa1;
     private int cantidadCocaCola = 0;
+    private Item item;
 
     /**
      * Creates new form VentanaBebidas
@@ -24,6 +24,16 @@ public class VentanaBebidas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
+    public int getCantidadCocaCola() {
+        return cantidadCocaCola;
+    }
+
+    public void setCantidadCocaCola(int cantidadCocaCola) {
+        this.cantidadCocaCola = cantidadCocaCola;
+    }
+    
+    
 
     public VentanaPrincipal getVentanaPrincipal() {
         return ventanaPrincipal;
@@ -45,9 +55,6 @@ public class VentanaBebidas extends javax.swing.JDialog {
         this.jButtonFanta.addActionListener(new MiActionListener());
     }
 
-    public void establecerActionComands() {
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,8 +70,6 @@ public class VentanaBebidas extends javax.swing.JDialog {
         jButtonFanta = new javax.swing.JButton();
         jButtonCania = new javax.swing.JButton();
         jButtonCancelarBebida = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonCocaCola.setText("Cocacola");
         jButtonCocaCola.addActionListener(new java.awt.event.ActionListener() {
@@ -140,24 +145,17 @@ public class VentanaBebidas extends javax.swing.JDialog {
 
     private void jButtonCocaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCocaColaActionPerformed
         // TODO add your handling code here:
-        cantidadCocaCola++;
-        Item itemCocaCola = new Item("Cocacola", "Bebida", cantidadCocaCola, "icono.jpeg", 1);
-        ItemsTableModel itm = (ItemsTableModel) this.ventanaMesa1.getjTableItems().getModel();
-        if (cantidadCocaCola > 1) {
-            itm.update(itemCocaCola);
-            this.ventanaMesa1.getLogicaItems().aniadirItem(itemCocaCola);
+        item = new Item("Cocacola", "Bebida", this.ventanaMesa1.getMesa().cantidadItem("Cocacola")+1, "icono.jpeg", 1);
+        if (item.getCantidad() > 1) {
+            this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
-            itm.add(itemCocaCola);
+            this.ventanaMesa1.getMesa().getItems().add(item);
         }
-        this.ventanaMesa1.getMesa().setItems(this.ventanaMesa1.getLogicaItems().getListaItems());
-        itm = new ItemsTableModel(this.ventanaMesa1.getMesa().getItems());
-        this.ventanaMesa1.establecerTableModelItem();
-        this.ventanaMesa1.getjTableItems().setModel(itm);
-        this.setVisible(false);
+        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.dispose();
         this.ventanaMesa1.setVisible(true);
     }//GEN-LAST:event_jButtonCocaColaActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */

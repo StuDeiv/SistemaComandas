@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -17,7 +18,7 @@ public class ItemsTableModel extends AbstractTableModel {
     private final String[] columnas = {"Item","Precio","Cantidad"};
 
     public ItemsTableModel(List<Item> listaItems) {
-        this.listaItems = listaItems;
+        this.listaItems = new ArrayList<Item>();
     }
 
     public List<Item> getListaItems() {

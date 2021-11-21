@@ -45,5 +45,8 @@ public class LogicaItems {
         return listaItems;
     }
 
+    public void setListaItems(List<Item> listaItems) {
+        this.listaItems = listaItems;
+    }
 
 }

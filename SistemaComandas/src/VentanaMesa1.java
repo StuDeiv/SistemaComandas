@@ -25,7 +25,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     private LogicaItems logicaItems;
     private ItemsTableModel itm;
     private Mesa mesa;
-    //private List<Item> lItems = new ArrayList<>();
+
     /**
      * Creates new form VentanaMesa1
      */
@@ -34,9 +34,15 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         initComponents();
         ventanaPrincipal = (VentanaPrincipal) parent;
         logicaItems = new LogicaItems(ventanaPrincipal);
-        //mesa.setItems(lItems);
-        itm = new ItemsTableModel(logicaItems.getListaItems());
-        establecerTableModelItem();
+        mesa = new Mesa();
+        this.jTableItems.setModel(new ItemsTableModel(this.mesa.getItems()));
+        inicializarVentanas();
+    }
+
+    public void inicializarMesa() {
+    }
+
+    public void inicializarVentanas() {
         ventanaBebidas = new VentanaBebidas(ventanaPrincipal, true);
         ventanaEntrantes = new VentanaEntrantes(ventanaPrincipal, true);
         ventanaPrimeros = new VentanaPrimeros(ventanaPrincipal, true);
@@ -51,7 +57,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     public void setMesa(Mesa mesa) {
         this.mesa = mesa;
     }
-    
+
     public JTable getjTableItems() {
         return jTableItems;
     }
@@ -59,7 +65,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     public void setjTableItems(JTable jTableItems) {
         this.jTableItems = jTableItems;
     }
-    
+
     public LogicaItems getLogicaItems() {
         return logicaItems;
     }
@@ -87,9 +93,9 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     public void setItm(ItemsTableModel itm) {
         this.itm = itm;
     }
-    
+
     public void establecerTableModelItem() {
-        this.jTableItems.setModel(itm);
+        this.jTableItems.setModel(new ItemsTableModel(mesa.getItems()));
     }
 
     /**
@@ -251,20 +257,22 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
     private void jButtonBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBebidasActionPerformed
         // TODO add your handling code here:
-        this.ventanaBebidas.setVentanaPrincipal(ventanaPrincipal);
         this.ventanaBebidas.setVentanaMesa1(this);
-        this.setVisible(false);
+        this.dispose();
         this.ventanaBebidas.setVisible(true);
     }//GEN-LAST:event_jButtonBebidasActionPerformed
 
     private void jButtonVolverMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverMesasActionPerformed
-        // TODO add your handling code here:
-        this.setLogicaItems(new LogicaItems(ventanaPrincipal));
-        this.jTableItems.setModel(new ItemsTableModel(mesa.getItems()));
-        this.setVisible(false);
-        this.dispose();
+        // TODO add your handling code here
+        this.ventanaBebidas.setCantidadCocaCola(0);
         this.ventanaPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonVolverMesasActionPerformed
+
+    private void reiniciarLogicaItems() {
+        this.logicaItems.getListaItems().clear();
+        this.logicaItems.setListaItems(new ArrayList<>());
+    }
 
     private void jButtonEntrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrantesActionPerformed
         // TODO add your handling code here:
@@ -292,11 +300,8 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println("Mesa seleccionada: " +mesa.getNumMesa());
-        List<Item> lItems = this.mesa.getItems();
-        for (Item item : lItems) {
-            System.out.println(item);
-        }
+        System.out.println(this.mesa.toString());
+        establecerTableModelItem();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
