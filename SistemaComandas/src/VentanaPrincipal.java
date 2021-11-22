@@ -1,4 +1,7 @@
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -50,8 +53,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.mesa = mesa;
     }
 
-    
-    
     public void establecerTableModelMesas() {
         this.jTableMesas.setModel(new MesasTableModel(logicaMesa.getListaMesas()));
     }
@@ -266,8 +267,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
         Mesa mesa = buscarMesa(numMesaSeleccionada);
-        for (Item item : mesa.getItems()) {
-            System.out.println(item);
+        double subImporte = 0;
+        double totalIVA;
+        double importeTotal;
+        try {
+            String nombreFichero = "ticket-mesa-" + numMesaSeleccionada + ".txt";
+            File file = new File(nombreFichero);
+            String cadena = "**************** MESA" + numMesaSeleccionada + " **************** \n";
+            for (Item item : mesa.getItems()) {
+                cadena += item.toString()+"\n";
+                subImporte += item.getPrecio();
+            }
+            totalIVA = subImporte*0.21;
+            importeTotal = subImporte+totalIVA;
+            cadena += "Subimporte: "+subImporte+"\t Total IVA: "+totalIVA+"\t TOTAL: "+importeTotal+"\n"; 
+            cadena += "*****************************************";
+
+            if (file.createNewFile()) {
+                FileWriter fw = new FileWriter(nombreFichero);
+                PrintWriter pw = new PrintWriter(fw);
+                pw.print(cadena);
+                pw.close();
+            } else {
+                FileWriter fw = new FileWriter(nombreFichero);
+                PrintWriter pw = new PrintWriter(fw);
+                pw.print(cadena);
+                pw.close();
+            }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

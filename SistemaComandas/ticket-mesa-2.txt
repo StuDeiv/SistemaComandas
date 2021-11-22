@@ -1,0 +1,11 @@
+**************** MESA2 **************** 
+Puré 	Cantidad:1 	Precio:1.0
+
+Fanta 	Cantidad:1 	Precio:1.0
+
+Sopa 	Cantidad:1 	Precio:1.0
+
+Pechuga de pollo 	Cantidad:1 	Precio:1.0
+
+Subimporte: 4.0	 Total IVA: 0.84	 TOTAL: 4.84
+*****************************************
