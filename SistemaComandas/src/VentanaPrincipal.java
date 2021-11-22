@@ -23,6 +23,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private LogicaMesa logicaMesa;
     private VentanaMesa1 ventanaMesa1;
+    private LogicaItems logicaItems;
     private TableRowSorter<MesasTableModel> sorter;
     private int numMesa = 0;
     private Mesa mesa;
@@ -34,6 +35,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         logicaMesa = new LogicaMesa(this);
         ventanaMesa1 = new VentanaMesa1(this, true);
+        logicaItems = new LogicaItems(this);
+        this.logicaItems.obtenerItemsFichero();
         establecerTableModelMesas();
     }
 

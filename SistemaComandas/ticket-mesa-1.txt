@@ -1,6 +1,11 @@
 **************** MESA1 **************** 
-Puré 	Cantidad:1 	Precio:1.0
+Fanta 	Cantidad:1 	Precio:2.0
 
-Fanta 	Cantidad:1 	Precio:1.0
+Espaguettis 	Cantidad:2 	Precio:24.0
 
-*************************************
+Ensalada 	Cantidad:1 	Precio:4.0
+
+Pechuga de pollo 	Cantidad:1 	Precio:18.0
+
+Subimporte: 48.0	 Total IVA: 10.08	 TOTAL: 58.08
+*****************************************

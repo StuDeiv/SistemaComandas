@@ -143,10 +143,11 @@ public class VentanaBebidas extends javax.swing.JDialog {
 
     private void jButtonCocaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCocaColaActionPerformed
         // TODO add your handling code here:
-        item = new Item("Cocacola", "Bebida", this.ventanaMesa1.getMesa().cantidadItem("Cocacola") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Cocacola");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
@@ -155,10 +156,11 @@ public class VentanaBebidas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCocaColaActionPerformed
 
     private void jButtonFantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFantaActionPerformed
-        item = new Item("Fanta", "Bebida", this.ventanaMesa1.getMesa().cantidadItem("Fanta") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Fanta");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
@@ -167,10 +169,11 @@ public class VentanaBebidas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonFantaActionPerformed
 
     private void jButtonAguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAguaActionPerformed
-        item = new Item("Agua", "Bebida", this.ventanaMesa1.getMesa().cantidadItem("Agua") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Agua");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));

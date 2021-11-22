@@ -42,6 +42,10 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     public void inicializarMesa() {
     }
 
+    public Item obtenerInfoItemsPorNombre(String nombreItem) {
+        return this.logicaItems.obtenerDatosItem(nombreItem);
+    }
+
     public void inicializarVentanas() {
         ventanaBebidas = new VentanaBebidas(ventanaPrincipal, true);
         ventanaEntrantes = new VentanaEntrantes(ventanaPrincipal, true);

@@ -135,22 +135,26 @@ public class VentanaPrimeros extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEspaguettisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEspaguettisActionPerformed
-        item = new Item("Espaguettis", "Primeros", this.ventanaMesa1.getMesa().cantidadItem("Espaguettis")+1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Espaguettis");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
-        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+        this.ventanaMesa1.getjTableItems().updateUI();
+        this.ventanaMesa1.establecerTableModelItem();
+        //this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
         this.dispose();
         this.ventanaMesa1.setVisible(true);
     }//GEN-LAST:event_jButtonEspaguettisActionPerformed
 
     private void jButtonSopaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSopaActionPerformed
-                item = new Item("Sopa", "Primeros", this.ventanaMesa1.getMesa().cantidadItem("Sopa")+1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Sopa");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
@@ -159,10 +163,11 @@ public class VentanaPrimeros extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSopaActionPerformed
 
     private void jButtonPaellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPaellaActionPerformed
-                item = new Item("Paella", "Primeros", this.ventanaMesa1.getMesa().cantidadItem("Paella")+1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Paella");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));

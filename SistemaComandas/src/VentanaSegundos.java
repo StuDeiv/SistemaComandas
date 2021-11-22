@@ -127,10 +127,11 @@ public class VentanaSegundos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSolomilloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSolomilloActionPerformed
-        item = new Item("Solomillo", "Segundos", this.ventanaMesa1.getMesa().cantidadItem("Solomillo") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Solomillo");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
@@ -139,10 +140,11 @@ public class VentanaSegundos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSolomilloActionPerformed
 
     private void jButtonBistecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBistecActionPerformed
-        item = new Item("Bistec", "Segundos", this.ventanaMesa1.getMesa().cantidadItem("Bistec") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Bistec");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
@@ -151,10 +153,11 @@ public class VentanaSegundos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBistecActionPerformed
 
     private void jButtonPechugaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPechugaActionPerformed
-        item = new Item("Pechuga de pollo", "Segundos", this.ventanaMesa1.getMesa().cantidadItem("Pechuga de pollo") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Pechuga de pollo");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));

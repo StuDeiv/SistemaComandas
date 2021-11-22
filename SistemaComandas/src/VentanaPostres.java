@@ -127,10 +127,12 @@ public class VentanaPostres extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonArrozLecheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArrozLecheActionPerformed
-        item = new Item("Arroz con leche", "Postres", this.ventanaMesa1.getMesa().cantidadItem("Arroz con leche") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Arroz con leche");
+        System.out.println(item.getCantidad());
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
@@ -139,10 +141,11 @@ public class VentanaPostres extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonArrozLecheActionPerformed
 
     private void jButtonNatillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNatillasActionPerformed
-        item = new Item("Natillas", "Postres", this.ventanaMesa1.getMesa().cantidadItem("Natillas") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Natillas");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
@@ -151,10 +154,11 @@ public class VentanaPostres extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonNatillasActionPerformed
 
     private void jButtonFrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFrutaActionPerformed
-        item = new Item("Fruta", "Postres", this.ventanaMesa1.getMesa().cantidadItem("Fruta") + 1, "icono.jpeg", 1);
-        if (item.getCantidad() > 1) {
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Fruta");
+        if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {
+            item.setCantidad(item.getCantidad() + 1);
             this.ventanaMesa1.getMesa().getItems().add(item);
         }
         this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));

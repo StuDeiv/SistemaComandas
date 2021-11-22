@@ -9,14 +9,15 @@
  * @author dsantosc04
  */
 public class Item {
-    
+
     private String nombre;
     private String tipo;
     private int cantidad;
     private String icono;
     private double precio;
 
-    public Item(String nombre, String tipo,int cantidad, String icono, double precio) {
+
+    public Item(String nombre, String tipo, int cantidad, String icono, double precio) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantidad = cantidad;
@@ -48,8 +49,6 @@ public class Item {
         this.cantidad = cantidad;
     }
 
-    
-    
     public String getIcono() {
         return icono;
     }
@@ -68,11 +67,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return nombre +" \tCantidad:" + cantidad +" \tPrecio:" + precio + "\n";
+        return nombre + " \tCantidad:" + cantidad + " \tPrecio:" + precio + "\n";
     }
 
-    
-    
-    
-    
 }
