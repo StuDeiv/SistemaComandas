@@ -156,7 +156,7 @@ public class VentanaEntrantes extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonEnsaladaActionPerformed
 
     private void jButtonPureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPureActionPerformed
-        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Puré");
+        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Pure");
         if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {

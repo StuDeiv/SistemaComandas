@@ -1,4 +1,7 @@
 
+import java.awt.Button;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -16,11 +19,7 @@ import javax.swing.JTable;
 public class VentanaMesa1 extends javax.swing.JDialog {
 
     private VentanaPrincipal ventanaPrincipal;
-    private VentanaBebidas ventanaBebidas;
-    private VentanaEntrantes ventanaEntrantes;
-    private VentanaPrimeros ventanaPrimeros;
-    private VentanaSegundos ventanasSegundos;
-    private VentanaPostres ventanaPostres;
+    private VentanaItems ventanaItems;
     private LogicaMesa logicaMesa;
     private LogicaItems logicaItems;
     private ItemsTableModel itm;
@@ -47,11 +46,22 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     }
 
     public void inicializarVentanas() {
-        ventanaBebidas = new VentanaBebidas(ventanaPrincipal, true);
-        ventanaEntrantes = new VentanaEntrantes(ventanaPrincipal, true);
-        ventanaPrimeros = new VentanaPrimeros(ventanaPrincipal, true);
-        ventanasSegundos = new VentanaSegundos(ventanaPrincipal, true);
-        ventanaPostres = new VentanaPostres(ventanaPrincipal, true);
+        ventanaItems = new VentanaItems(ventanaPrincipal, true);
+    }
+
+    public void introducirBotones(String tipo) {
+        this.ventanaItems.getjPanel1().setLayout(new GridLayout(9, 9));
+        this.ventanaItems.getjPanel1().setMaximumSize(new Dimension(250, 500));
+        for (Item item : this.logicaItems.getListaItems()) {
+            if (item.getTipo().contains(tipo)) {
+                Button boton = new Button();
+                boton.setActionCommand(item.getNombre());
+                boton.addActionListener(new MiActionListener(ventanaItems, this, boton.getActionCommand().toString()));
+                boton.setPreferredSize(new Dimension(100, 100));
+                boton.setLabel(item.getNombre());
+                this.ventanaItems.getjPanel1().add(boton);
+            }
+        }
     }
 
     public Mesa getMesa() {
@@ -98,8 +108,13 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         this.itm = itm;
     }
 
+    public int corregirGetSelectRow() {
+        return this.jTableItems.convertRowIndexToModel(jTableItems.getSelectedRow());
+    }
+
     public void establecerTableModelItem() {
         this.jTableItems.setModel(new ItemsTableModel(mesa.getItems()));
+        this.jTableItems.updateUI();
     }
 
     /**
@@ -129,10 +144,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
         jTableItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Item", "Precio", "Cantidad"
@@ -146,7 +158,9 @@ public class VentanaMesa1 extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
+        jTableItems.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(jTableItems);
+        jTableItems.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jButtonEntrantes.setText("Entrantes");
         jButtonEntrantes.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +198,11 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         });
 
         jButtonEliminarItem.setText("Eliminar Item");
+        jButtonEliminarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarItemActionPerformed(evt);
+            }
+        });
 
         jButtonVolverMesas.setText("Volver a Mesas");
         jButtonVolverMesas.addActionListener(new java.awt.event.ActionListener() {
@@ -261,9 +280,10 @@ public class VentanaMesa1 extends javax.swing.JDialog {
 
     private void jButtonBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBebidasActionPerformed
         // TODO add your handling code here:
-        this.ventanaBebidas.setVentanaMesa1(this);
         this.dispose();
-        this.ventanaBebidas.setVisible(true);
+        introducirBotones(this.jButtonEntrantes.getActionCommand());
+        this.ventanaItems.setVentanaMesa1(this);
+        this.ventanaItems.setVisible(true);
     }//GEN-LAST:event_jButtonBebidasActionPerformed
 
     private void jButtonVolverMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverMesasActionPerformed
@@ -280,29 +300,34 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     private void jButtonEntrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrantesActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        this.ventanaEntrantes.setVentanaMesa1(this);
-        this.ventanaEntrantes.setVisible(true);
+        introducirBotones(this.jButtonEntrantes.getActionCommand());
+        this.ventanaItems.setVentanaMesa1(this);
+        this.ventanaItems.setVisible(true);
     }//GEN-LAST:event_jButtonEntrantesActionPerformed
 
     private void jButtonPrimerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrimerosActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        this.ventanaPrimeros.setVentanaMesa1(this);
-        this.ventanaPrimeros.setVisible(true);
+        introducirBotones(this.jButtonPrimeros.getActionCommand());
+        this.ventanaItems.setVentanaMesa1(this);
+        this.ventanaItems.setVisible(true);
     }//GEN-LAST:event_jButtonPrimerosActionPerformed
 
     private void jButtonSegundosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSegundosActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        this.ventanasSegundos.setVentanaMesa1(this);
-        this.ventanasSegundos.setVisible(true);
+        introducirBotones(this.jButtonSegundos.getActionCommand());
+        //this.ventanasSegundos.setVisible(true);
+        this.ventanaItems.setVentanaMesa1(this);
+        this.ventanaItems.setVisible(true);
     }//GEN-LAST:event_jButtonSegundosActionPerformed
 
     private void jButtonPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPostresActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        this.ventanaPostres.setVentanaMesa1(this);
-        this.ventanaPostres.setVisible(true);
+        introducirBotones(this.jButtonPostres.getActionCommand());
+        this.ventanaItems.setVentanaMesa1(this);
+        this.ventanaItems.setVisible(true);
     }//GEN-LAST:event_jButtonPostresActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -310,6 +335,17 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         System.out.println(this.mesa.toString());
         establecerTableModelItem();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonEliminarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarItemActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = corregirGetSelectRow();
+        ItemsTableModel itm = (ItemsTableModel) this.jTableItems.getModel();
+        if (filaSeleccionada >= 0) {
+            itm.removeRow(filaSeleccionada);
+            this.mesa.getItems().remove(filaSeleccionada);
+            establecerTableModelItem();
+        }
+    }//GEN-LAST:event_jButtonEliminarItemActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,3 +1,6 @@
+
+import javax.swing.JPanel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +11,7 @@
  *
  * @author proye
  */
-public class VentanaPostres extends javax.swing.JDialog {
+public class VentanaItems extends javax.swing.JDialog {
 
     private VentanaPrincipal ventanaPrincipal;
     private VentanaMesa1 ventanaMesa1;
@@ -17,11 +20,21 @@ public class VentanaPostres extends javax.swing.JDialog {
     /**
      * Creates new form VentanaPostres
      */
-    public VentanaPostres(java.awt.Frame parent, boolean modal) {
+    public VentanaItems(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    
+    
     public VentanaPrincipal getVentanaPrincipal() {
         return ventanaPrincipal;
     }
@@ -49,32 +62,13 @@ public class VentanaPostres extends javax.swing.JDialog {
 
         jButtonCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButtonArrozLeche = new javax.swing.JButton();
-        jButtonNatillas = new javax.swing.JButton();
-        jButtonFruta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonCancelar.setText("Cancelar");
-
-        jButtonArrozLeche.setText("<html>Arroz <br> con leche </html>");
-        jButtonArrozLeche.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonArrozLecheActionPerformed(evt);
-            }
-        });
-
-        jButtonNatillas.setText("Natillas");
-        jButtonNatillas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNatillasActionPerformed(evt);
-            }
-        });
-
-        jButtonFruta.setText("Fruta");
-        jButtonFruta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFrutaActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
@@ -82,22 +76,11 @@ public class VentanaPostres extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButtonArrozLeche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jButtonNatillas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jButtonFruta)
-                .addGap(23, 23, 23))
+            .addGap(0, 319, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonFruta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonArrozLeche, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                    .addComponent(jButtonNatillas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 183, Short.MAX_VALUE))
+            .addGap(0, 236, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,45 +109,12 @@ public class VentanaPostres extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonArrozLecheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArrozLecheActionPerformed
-        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Arroz con leche");
-        System.out.println(item.getCantidad());
-        if (item.getCantidad() >= 1) {
-            this.ventanaMesa1.getMesa().aniadirItem(item);
-        } else {
-            item.setCantidad(item.getCantidad() + 1);
-            this.ventanaMesa1.getMesa().getItems().add(item);
-        }
-        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
         this.dispose();
+        this.getjPanel1().removeAll();
         this.ventanaMesa1.setVisible(true);
-    }//GEN-LAST:event_jButtonArrozLecheActionPerformed
-
-    private void jButtonNatillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNatillasActionPerformed
-        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Natillas");
-        if (item.getCantidad() >= 1) {
-            this.ventanaMesa1.getMesa().aniadirItem(item);
-        } else {
-            item.setCantidad(item.getCantidad() + 1);
-            this.ventanaMesa1.getMesa().getItems().add(item);
-        }
-        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
-        this.dispose();
-        this.ventanaMesa1.setVisible(true);
-    }//GEN-LAST:event_jButtonNatillasActionPerformed
-
-    private void jButtonFrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFrutaActionPerformed
-        item = this.ventanaMesa1.obtenerInfoItemsPorNombre("Fruta");
-        if (item.getCantidad() >= 1) {
-            this.ventanaMesa1.getMesa().aniadirItem(item);
-        } else {
-            item.setCantidad(item.getCantidad() + 1);
-            this.ventanaMesa1.getMesa().getItems().add(item);
-        }
-        this.ventanaMesa1.getjTableItems().setModel(new ItemsTableModel(this.ventanaMesa1.getMesa().getItems()));
-        this.dispose();
-        this.ventanaMesa1.setVisible(true);
-    }//GEN-LAST:event_jButtonFrutaActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,20 +133,21 @@ public class VentanaPostres extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPostres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPostres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPostres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPostres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VentanaPostres dialog = new VentanaPostres(new javax.swing.JFrame(), true);
+                VentanaItems dialog = new VentanaItems(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -209,10 +160,7 @@ public class VentanaPostres extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonArrozLeche;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonFruta;
-    private javax.swing.JButton jButtonNatillas;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

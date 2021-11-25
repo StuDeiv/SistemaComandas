@@ -15,10 +15,10 @@ import javax.swing.table.AbstractTableModel;
 public class ItemsTableModel extends AbstractTableModel {
 
     private List<Item> listaItems;
-    private final String[] columnas = {"Item","Precio","Cantidad"};
+    private final String[] columnas = {"Item", "Precio", "Cantidad"};
 
     public ItemsTableModel(List<Item> listaItems) {
-        this.listaItems = new ArrayList<Item>();
+        this.listaItems = listaItems;
     }
 
     public List<Item> getListaItems() {
@@ -28,7 +28,6 @@ public class ItemsTableModel extends AbstractTableModel {
     public void setListaItems(List<Item> listaItems) {
         this.listaItems = listaItems;
     }
-    
 
     @Override
     public int getRowCount() {
@@ -57,7 +56,7 @@ public class ItemsTableModel extends AbstractTableModel {
     public String getColumnName(int column) {
         return columnas[column];
     }
-    
+
     public void add(Item item) {
         listaItems.add(item);
         fireTableRowsInserted(listaItems.size() - 1, listaItems.size() - 1);
@@ -78,4 +77,8 @@ public class ItemsTableModel extends AbstractTableModel {
         }
     }
 
+    public void removeRow(int row) {
+        // remove a row from your internal data structure
+        fireTableRowsDeleted(row, row);
+    }
 }

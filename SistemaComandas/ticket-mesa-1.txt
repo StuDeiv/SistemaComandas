@@ -1,11 +1,9 @@
 **************** MESA1 **************** 
-Fanta 	Cantidad:1 	Precio:2.0
+Paella 	Cantidad:1 	Precio:10.0
 
-Espaguettis 	Cantidad:2 	Precio:24.0
+Bistec 	Cantidad:1 	Precio:27.0
 
-Ensalada 	Cantidad:1 	Precio:4.0
+Pure 	Cantidad:1 	Precio:5.0
 
-Pechuga de pollo 	Cantidad:1 	Precio:18.0
-
-Subimporte: 48.0	 Total IVA: 10.08	 TOTAL: 58.08
+Subimporte: 42.0	 Total IVA: 8.82	 TOTAL: 50.82
 *****************************************
