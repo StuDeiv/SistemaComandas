@@ -24,6 +24,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private LogicaMesa logicaMesa;
     private VentanaMesa1 ventanaMesa1;
     private LogicaItems logicaItems;
+    private AniadirItem aniadirItem;
     private TableRowSorter<MesasTableModel> sorter;
     private int numMesa = 0;
     private Mesa mesa;
@@ -35,6 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         logicaMesa = new LogicaMesa(this);
         ventanaMesa1 = new VentanaMesa1(this, true);
+        aniadirItem = new AniadirItem(this, true);
         logicaItems = new LogicaItems(this);
         this.logicaItems.obtenerItemsFichero();
         establecerTableModelMesas();
@@ -154,6 +156,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jMenu2.setText("Añadir items");
+        jMenu2.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu2MenuSelected(evt);
+            }
+        });
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Eliminar Items");
@@ -278,12 +294,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             File file = new File(nombreFichero);
             String cadena = "**************** MESA" + numMesaSeleccionada + " **************** \n";
             for (Item item : mesa.getItems()) {
-                cadena += item.toString()+"\n";
+                cadena += item.toString() + "\n";
                 subImporte += item.getPrecio();
             }
-            totalIVA = subImporte*0.21;
-            importeTotal = subImporte+totalIVA;
-            cadena += "Subimporte: "+subImporte+"\t Total IVA: "+totalIVA+"\t TOTAL: "+importeTotal+"\n"; 
+            totalIVA = subImporte * 0.21;
+            importeTotal = subImporte + totalIVA;
+            cadena += "Subimporte: " + subImporte + "\t Total IVA: " + totalIVA + "\t TOTAL: " + importeTotal + "\n";
             cadena += "*****************************************";
 
             if (file.createNewFile()) {
@@ -300,6 +316,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+        this.aniadirItem.setVisible(true);
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenu2MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu2MenuSelected
+        this.aniadirItem.setVisible(true);
+    }//GEN-LAST:event_jMenu2MenuSelected
 
     /**
      * @param args the command line arguments

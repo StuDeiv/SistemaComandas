@@ -1,16 +1,5 @@
-Sopa:Entrantes:0:iconoSopa.jpg:6.0
-Ensalada:Entrantes:0:iconoEnsalada.jpg:4.0
-Pure:Entrantes:0:iconoPure.jpg:5.0
-Espaguettis:Primeros:0:iconoEspaguettis.jpg:12.0
-Sopa:Primeros:0:iconoSopaPrimero.jpg:6.0
-Paella:Primeros:0:iconoPaella.jpg:10.0
-Cocacola:Bebida:0:iconoCocacola.jpg:2.0
-Fanta:Bebida:0:iconoFanta.jpg:2.0
-Agua:Bebida:0:iconoAgua.jpg:1.0
-Solomillo:Segundos:0:iconoSolomillo.jpg:24.0
-Bistec:Segundos:0:iconoBistec.jpg:27.0
-Pechuga de pollo:Segundos:0:iconoPechuga.jpg:18.0
-Arroz con leche:Postres:0:iconoArrozConLeche.jpg:5.0
-Natillas:Postres:0:iconoNatillas.jpg:5.0
-Fruta:Postres:0:iconoFruta.jpg:5.0
-
+Carpaccio atun:Entrantes:0:carpaccioAtun.jpeg:18
+Langostinos:Entrantes:0:lango.jpeg:12
+Fanta:Bebida:0:fanta.jpeg:2.20
+Atún rojo:Primeros:0:atunrojo.png:29
+Tortilla patatas:Entrantes:0:tortilla.png:10

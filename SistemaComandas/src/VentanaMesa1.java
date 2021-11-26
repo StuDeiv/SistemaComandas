@@ -136,7 +136,6 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         jButtonPostres = new javax.swing.JButton();
         jButtonEliminarItem = new javax.swing.JButton();
         jButtonVolverMesas = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -170,6 +169,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         });
 
         jButtonBebidas.setText("Bebidas");
+        jButtonBebidas.setActionCommand("Bebida");
         jButtonBebidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBebidasActionPerformed(evt);
@@ -211,13 +211,6 @@ public class VentanaMesa1 extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,7 +224,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
                             .addComponent(jButtonEliminarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonEntrantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonEntrantes, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                             .addComponent(jButtonPrimeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonPostres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabelMesasId))
@@ -241,9 +234,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
                     .addComponent(jButtonBebidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jButton1)
-                .addGap(34, 34, 34)
+                .addGap(138, 138, 138)
                 .addComponent(jButtonVolverMesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -269,9 +260,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonPostres, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonVolverMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addComponent(jButtonVolverMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -281,7 +270,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     private void jButtonBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBebidasActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        introducirBotones(this.jButtonEntrantes.getActionCommand());
+        introducirBotones(this.jButtonBebidas.getActionCommand());
         this.ventanaItems.setVentanaMesa1(this);
         this.ventanaItems.setVisible(true);
     }//GEN-LAST:event_jButtonBebidasActionPerformed
@@ -329,12 +318,6 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         this.ventanaItems.setVentanaMesa1(this);
         this.ventanaItems.setVisible(true);
     }//GEN-LAST:event_jButtonPostresActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        System.out.println(this.mesa.toString());
-        establecerTableModelItem();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonEliminarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarItemActionPerformed
         // TODO add your handling code here:
@@ -390,7 +373,6 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBebidas;
     private javax.swing.JButton jButtonEliminarItem;
     private javax.swing.JButton jButtonEntrantes;
