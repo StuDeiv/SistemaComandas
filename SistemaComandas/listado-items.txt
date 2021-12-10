@@ -3,3 +3,16 @@ Langostinos:Entrantes:0:lango.jpeg:12
 Fanta:Bebida:0:fanta.jpeg:2.20
 Atún rojo:Primeros:0:atunrojo.png:29
 Tortilla patatas:Entrantes:0:tortilla.png:10
+Patatas fritas:Entrantes:0:patatasFritas.jpg:7
+Calamares:Entrantes:0:calamares.jpeg:6.5
+Pepinillos:Entrantes:0:pepinillos.jpeg:3.2
+Zumo de manzana:Bebida:0:zumoManzana.png:3
+Pulpo:Entrantes:0:pulpo.png:7.15
+Ensalada de atun:Entrantes:0:ensaladaAtun.jpg:11.29
+Cocacola:Bebida:0:cocacola.png:2.10
+Fanta limón:Bebida:0:fantaLimon.png:2.10
+Fanta Cereza:Bebida:0:fantaCereza.png:2.10
+Lubina a la plancha:Primeros:0:lubinaPlancha.png:12
+Pepino:Entrantes:0:pepino.jpeg:1
+Natillas:Postres:0:natillas.png:3.2
+Pudding:Postres:0:pudding.png:1.40

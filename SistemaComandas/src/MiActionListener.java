@@ -27,7 +27,6 @@ public class MiActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         item = this.ventanaMesa1.obtenerInfoItemsPorNombre(nombreElemento);
-        System.out.println("espagguetttiisisi");
         if (item.getCantidad() >= 1) {
             this.ventanaMesa1.getMesa().aniadirItem(item);
         } else {

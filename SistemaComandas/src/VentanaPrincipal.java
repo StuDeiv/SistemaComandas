@@ -42,6 +42,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         establecerTableModelMesas();
     }
 
+    public VentanaMesa1 getVentanaMesa1() {
+        return ventanaMesa1;
+    }
+
+    
+    
     public LogicaMesa getLogicaMesa() {
         return logicaMesa;
     }
@@ -56,6 +62,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void setMesa(Mesa mesa) {
         this.mesa = mesa;
+    }
+
+    public LogicaItems getLogicaItems() {
+        return logicaItems;
     }
 
     public void establecerTableModelMesas() {
@@ -270,6 +280,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButtonAniadirConsumicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAniadirConsumicionActionPerformed
         // TODO add your handling code here:
         try {
+            this.logicaItems.obtenerItemsFichero();
             int numMesaSeleccionada = this.logicaMesa.getListaMesas().get(corregirGetSelectRow()).getNumMesa();
             mesa = buscarMesa(numMesaSeleccionada);
             this.ventanaMesa1.setMesa(mesa);

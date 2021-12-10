@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class AniadirItem extends javax.swing.JDialog {
 
     VentanaPrincipal ventanaPrincipal;
-
+    
     /**
      * Creates new form AniadirItem
      */
@@ -156,15 +156,34 @@ public class AniadirItem extends javax.swing.JDialog {
             PrintWriter pw = new PrintWriter(fw);
             pw.print(cadena);
             pw.close();
+            fw.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        insertarItem();
         JOptionPane.showMessageDialog(ventanaPrincipal, "Item guardado correctamente", "Item guardado", JOptionPane.INFORMATION_MESSAGE);
-        //this.dispose();
-        ventanaPrincipal.setVisible(true);
-        
+        reiniciarCampos();
+        this.setVisible(false);
+        ventanaPrincipal.setVisible(true);   
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void insertarItem(){
+        this.ventanaPrincipal.getVentanaMesa1().getLogicaItems().getListaItems().add(
+                new Item(
+                        this.jTextFieldNombre.getText(), 
+                        this.jComboBoxTipo.getItemAt(this.jComboBoxTipo.getSelectedIndex()), 
+                        0, 
+                        this.jTextFieldIcono.getText(), 
+                        Double.parseDouble(this.jTextFieldPrecio.getText())));
+    }
+    
+    private void reiniciarCampos(){
+        this.jTextFieldNombre.setText("");
+        this.jComboBoxTipo.setSelectedIndex(0);
+        this.jTextFieldIcono.setText("");
+        this.jTextFieldPrecio.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
