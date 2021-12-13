@@ -1,9 +1,5 @@
 **************** MESA1 **************** 
-Paella 	Cantidad:1 	Precio:10.0
+Ensalada 	Cantidad:1 	Precio:12.0
 
-Bistec 	Cantidad:1 	Precio:27.0
-
-Pure 	Cantidad:1 	Precio:5.0
-
-Subimporte: 42.0	 Total IVA: 8.82	 TOTAL: 50.82
+Subimporte: 12.0	 Total IVA: 2.52	 TOTAL: 14.52
 *****************************************

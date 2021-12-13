@@ -1,14 +1,28 @@
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListDataListener;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author dsantosc04
  */
 public class EliminarItem extends javax.swing.JDialog {
+
+    VentanaPrincipal principal;
 
     /**
      * Creates new form EliminarItem
@@ -16,6 +30,8 @@ public class EliminarItem extends javax.swing.JDialog {
     public EliminarItem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        principal = (VentanaPrincipal) parent;
+        aniadirItemsComboBox();
     }
 
     /**
@@ -27,51 +43,65 @@ public class EliminarItem extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jComboBoxEliminarItems = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Nombre/Tipo"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addComponent(jComboBoxEliminarItems, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCancelar)
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(jComboBoxEliminarItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButtonCancelar))
+                .addGap(68, 68, 68))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        eliminarItems();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,7 +146,98 @@ public class EliminarItem extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JComboBox<String> jComboBoxEliminarItems;
     // End of variables declaration//GEN-END:variables
+
+    private void eliminarItems() {
+        String nombreItemSeleccionado = (String) this.jComboBoxEliminarItems.getSelectedItem();
+        List<Item> lItemActual = this.principal.getVentanaMesa1().getLogicaItems().getListaItems();
+        int i = 0;
+        boolean enc = false;
+        while ((i < lItemActual.size()) && (!enc)) {
+            if (lItemActual.get(i).getNombre().equalsIgnoreCase(nombreItemSeleccionado)) {
+                enc = true;
+            } else {
+                i++;
+            }
+        }
+        if (enc) {
+            //Al ser una acción importante y de borrado, preguntamos al usuario si desea borrarlo de verdad
+            int resultado = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas borrar este item", "Borrar Item", JOptionPane.YES_NO_CANCEL_OPTION);
+            //Si el resultado es que sí, pasamos a borrar
+            if (resultado == JOptionPane.YES_OPTION) {
+                //Borramos de la lista de items el producto
+                this.principal.getVentanaMesa1().getLogicaItems().getListaItems().remove(i);
+                //Añadimos la lista de items actualizadas al combo box
+                aniadirItemsComboBox();
+                //Reescribimos el fichero con la lista de items actual
+                reescribirFichero();
+                //Mostramos mensaje de borrado correctamente
+                JOptionPane.showMessageDialog(this, "Borrado correctamente","Acción realizada correctamente",JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }
+
+    private void reescribirFichero() {
+        List<Item> lItemsActual = this.principal.getVentanaMesa1().getLogicaItems().getListaItems();
+        String nombreFichero = "listado-items.txt";
+        File file = new File(nombreFichero);
+        String cadena = "";
+        //Borramos primero lo que hay dentro
+        try {
+            FileWriter fw = new FileWriter(nombreFichero);
+            PrintWriter pw = new PrintWriter(fw);
+            pw.print(cadena);
+            pw.close();
+            fw.close();
+        } catch (IOException e) {
+        }
+        //Escribimos los items
+        for (Item item : lItemsActual) {
+            cadena += item.getNombre() + ":";
+            cadena += item.getTipo() + ":";
+            cadena += 0 + ":";
+            cadena += establecerIcono(item.getTipo()) + ":";
+            cadena += item.getPrecio() + "\n";
+            FileWriter fw;
+            try {
+                fw = new FileWriter(nombreFichero, true);
+                PrintWriter pw = new PrintWriter(fw);
+                pw.print(cadena);
+                cadena = "";
+                pw.close();
+                fw.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private String establecerIcono(String tipo) {
+        switch (tipo) {
+            case "Entrantes":
+                return "entrantes.png";
+            case "Bebida":
+                return "bebidas.png";
+            case "Postres":
+                return "postres.jpg";
+            case "Primeros":
+                return "primeros.jpg";
+            case "Segundos":
+                return "segundos.png";
+        }
+        return null;
+    }
+
+    public void aniadirItemsComboBox() {
+        Vector<String> nombreItems = new Vector<>();
+        for (Item item : principal.getVentanaMesa1().getLogicaItems().getListaItems()) {
+            nombreItems.add(item.getNombre());
+        }
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Vector) nombreItems);
+        this.jComboBoxEliminarItems.setModel(model);
+    }
+
 }

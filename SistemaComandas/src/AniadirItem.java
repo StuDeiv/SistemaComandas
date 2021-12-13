@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class AniadirItem extends javax.swing.JDialog {
 
     VentanaPrincipal ventanaPrincipal;
-    
+
     /**
      * Creates new form AniadirItem
      */
@@ -42,11 +42,9 @@ public class AniadirItem extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jComboBoxTipo = new javax.swing.JComboBox<>();
         jTextFieldPrecio = new javax.swing.JTextField();
-        jTextFieldIcono = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -57,8 +55,6 @@ public class AniadirItem extends javax.swing.JDialog {
         jLabel2.setText("Precio");
 
         jLabel3.setText("Tipo");
-
-        jLabel4.setText("Icono");
 
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrantes", "Bebida", "Primeros", "Segundos", "Postres" }));
 
@@ -84,15 +80,10 @@ public class AniadirItem extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(29, 29, 29)
-                                .addComponent(jButton3))
-                            .addComponent(jTextFieldIcono)))
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton2)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
@@ -122,15 +113,11 @@ public class AniadirItem extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldIcono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,11 +135,11 @@ public class AniadirItem extends javax.swing.JDialog {
         cadena += this.jTextFieldNombre.getText() + ":";
         cadena += this.jComboBoxTipo.getItemAt(this.jComboBoxTipo.getSelectedIndex()) + ":";
         cadena += 0 + ":";
-        cadena += this.jTextFieldIcono.getText() + ":";
-        cadena += this.jTextFieldPrecio.getText()+"\n";
+        cadena += establecerIcono() + ":";
+        cadena += this.jTextFieldPrecio.getText() + "\n";
         FileWriter fw;
         try {
-            fw = new FileWriter(nombreFichero,true);
+            fw = new FileWriter(nombreFichero, true);
             PrintWriter pw = new PrintWriter(fw);
             pw.print(cadena);
             pw.close();
@@ -164,26 +151,42 @@ public class AniadirItem extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(ventanaPrincipal, "Item guardado correctamente", "Item guardado", JOptionPane.INFORMATION_MESSAGE);
         reiniciarCampos();
         this.setVisible(false);
-        ventanaPrincipal.setVisible(true);   
+        ventanaPrincipal.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void insertarItem(){
+    
+    private String establecerIcono() {
+        switch (this.jComboBoxTipo.getItemAt(this.jComboBoxTipo.getSelectedIndex())) {
+            case "Entrantes":
+                return "entrantes.png";
+            case "Bebida":
+                return "bebidas.png";
+            case "Postres":
+                return "postres.jpg";
+            case "Primeros":
+                return "primeros.jpg";
+            case "Segundos":
+                return "segundos.png";
+        }
+        return null;
+    }
+    
+    private void insertarItem() {
         this.ventanaPrincipal.getVentanaMesa1().getLogicaItems().getListaItems().add(
                 new Item(
-                        this.jTextFieldNombre.getText(), 
-                        this.jComboBoxTipo.getItemAt(this.jComboBoxTipo.getSelectedIndex()), 
-                        0, 
-                        this.jTextFieldIcono.getText(), 
+                        this.jTextFieldNombre.getText(),
+                        this.jComboBoxTipo.getItemAt(this.jComboBoxTipo.getSelectedIndex()),
+                        0,
+                        establecerIcono(),
                         Double.parseDouble(this.jTextFieldPrecio.getText())));
     }
-    
-    private void reiniciarCampos(){
+
+    private void reiniciarCampos() {
         this.jTextFieldNombre.setText("");
         this.jComboBoxTipo.setSelectedIndex(0);
-        this.jTextFieldIcono.setText("");
         this.jTextFieldPrecio.setText("");
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -233,8 +236,6 @@ public class AniadirItem extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextFieldIcono;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldPrecio;
     // End of variables declaration//GEN-END:variables

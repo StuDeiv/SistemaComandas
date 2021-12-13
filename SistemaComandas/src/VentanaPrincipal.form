@@ -17,6 +17,10 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Items"/>
           </Properties>
+          <Events>
+            <EventHandler event="menuSelected" listener="javax.swing.event.MenuListener" parameters="javax.swing.event.MenuEvent" handler="jMenu3MenuSelected"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu3ActionPerformed"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

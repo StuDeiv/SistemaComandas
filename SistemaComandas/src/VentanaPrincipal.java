@@ -25,6 +25,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaMesa1 ventanaMesa1;
     private LogicaItems logicaItems;
     private AniadirItem aniadirItem;
+    private EliminarItem eliminarItem;
     private TableRowSorter<MesasTableModel> sorter;
     private int numMesa = 0;
     private Mesa mesa;
@@ -37,6 +38,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         logicaMesa = new LogicaMesa(this);
         ventanaMesa1 = new VentanaMesa1(this, true);
         aniadirItem = new AniadirItem(this, true);
+        eliminarItem = new EliminarItem(this, true);
         logicaItems = new LogicaItems(this);
         this.logicaItems.obtenerItemsFichero();
         establecerTableModelMesas();
@@ -46,8 +48,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return ventanaMesa1;
     }
 
-    
-    
     public LogicaMesa getLogicaMesa() {
         return logicaMesa;
     }
@@ -183,6 +183,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Eliminar Items");
+        jMenu3.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu3MenuSelected(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -336,6 +350,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jMenu2MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu2MenuSelected
         this.aniadirItem.setVisible(true);
     }//GEN-LAST:event_jMenu2MenuSelected
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+        this.eliminarItem.setVisible(true);
+        this.eliminarItem.aniadirItemsComboBox();
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu3MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu3MenuSelected
+        // TODO add your handling code here:
+        this.eliminarItem.setVisible(true);
+        this.eliminarItem.aniadirItemsComboBox();
+    }//GEN-LAST:event_jMenu3MenuSelected
 
     /**
      * @param args the command line arguments

@@ -1,5 +1,0 @@
-**************** MESA3 **************** 
-[Ensalada	 Cantidad:1	 Precio:1.0
-, Fanta	 Cantidad:1	 Precio:1.0
-, Espaguettis	 Cantidad:1	 Precio:1.0
-]

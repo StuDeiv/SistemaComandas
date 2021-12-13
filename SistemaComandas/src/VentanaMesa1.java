@@ -2,8 +2,11 @@
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
@@ -24,6 +27,11 @@ public class VentanaMesa1 extends javax.swing.JDialog {
     private LogicaItems logicaItems;
     private ItemsTableModel itm;
     private Mesa mesa;
+    private ImageIcon entrantes;
+    private ImageIcon bebidas;
+    private ImageIcon primeros;
+    private ImageIcon segundos;
+    private ImageIcon postres;
 
     /**
      * Creates new form VentanaMesa1
@@ -36,6 +44,7 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         mesa = new Mesa();
         this.jTableItems.setModel(new ItemsTableModel(this.mesa.getItems()));
         inicializarVentanas();
+        fijarIconosBotones();
     }
 
     public void inicializarMesa() {
@@ -54,14 +63,50 @@ public class VentanaMesa1 extends javax.swing.JDialog {
         this.ventanaItems.getjPanel1().setMaximumSize(new Dimension(250, 500));
         for (Item item : this.logicaItems.getListaItems()) {
             if (item.getTipo().contains(tipo)) {
-                Button boton = new Button();
+                JButton boton = new JButton();
                 boton.setActionCommand(item.getNombre());
+                establecerIconoBoton(boton, item);
                 boton.addActionListener(new MiActionListener(ventanaItems, this, boton.getActionCommand().toString()));
-                boton.setPreferredSize(new Dimension(100, 100));
+                boton.setPreferredSize(new Dimension(150, 150));
                 boton.setLabel(item.getNombre());
                 this.ventanaItems.getjPanel1().add(boton);
             }
         }
+    }
+
+    private void establecerIconoBoton(JButton boton, Item item) {
+        System.out.println(item.getTipo());
+        switch (item.getTipo()) {
+            case "Entrantes":
+                boton.setIcon(adaptarImageIcon(entrantes));
+                break;
+            case "Primeros":
+                boton.setIcon(adaptarImageIcon(primeros));
+                break;
+            case "Segundos":
+                boton.setIcon(adaptarImageIcon(segundos));
+                break;
+            case "Postres":
+                boton.setIcon(adaptarImageIcon(postres));
+                break;
+            case "Bebida":
+                boton.setIcon(adaptarImageIcon(bebidas));
+                break;
+        }
+    }
+
+    private void fijarIconosBotones() {
+        entrantes = new ImageIcon(getClass().getResource("entrantes.png"));
+        bebidas = new ImageIcon(getClass().getResource("bebidas.png"));
+        primeros = new ImageIcon(getClass().getResource("primeros.jpg"));
+        segundos = new ImageIcon(getClass().getResource("segundos.png"));
+        postres = new ImageIcon(getClass().getResource("postres.jpg"));
+    }
+
+    private ImageIcon adaptarImageIcon(ImageIcon image) {
+        Image img = image.getImage();
+        Image newimg = img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(newimg);
     }
 
     public Mesa getMesa() {
